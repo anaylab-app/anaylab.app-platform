@@ -498,7 +498,26 @@ function App() {
             Anaylab Builder™
           </h1>
           <p className="text-2xl md:text-3xl mb-4">💡 Avant de mettre 500 € dans une formation...</p>
-          <p className="text-xl md:text-2xl opacity-80">commence ici.</p>
+          <p className="text-xl md:text-2xl opacity-80 mb-8">commence ici.</p>
+          
+          {/* Bandeau test gratuit */}
+          <div className="bg-gradient-to-r from-green-600 to-teal-600 text-white p-4 rounded-lg mb-8 max-w-4xl mx-auto">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+              <div className="text-left">
+                <h3 className="text-xl font-bold mb-2">🎯 NOUVEAU : Testez gratuitement !</h3>
+                <p className="text-sm opacity-90">Découvrez vos modules personnalisés avant d'investir</p>
+              </div>
+              <button
+                onClick={() => {
+                  handlePackageSelect('test');
+                  setCurrentStep('form');
+                }}
+                className="bg-white text-green-600 px-6 py-3 rounded-lg font-bold hover:bg-gray-100 transition-colors"
+              >
+                Essai Gratuit →
+              </button>
+            </div>
+          </div>
         </div>
 
         {/* Pricing Cards */}
