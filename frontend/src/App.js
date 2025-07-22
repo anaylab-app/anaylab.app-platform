@@ -239,12 +239,34 @@ function App() {
           </div>
 
           <div className="text-center mt-12">
-            <button 
-              onClick={() => setCurrentStep('home')}
-              className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105"
-            >
-              🏠 Retour à l'accueil
-            </button>
+            {isDemo ? (
+              <div className="space-y-4">
+                <div className="bg-gradient-to-r from-yellow-600 to-orange-600 text-white px-6 py-3 rounded-lg inline-block">
+                  <span className="font-bold">🚀 Prêt pour la version complète ?</span>
+                </div>
+                <div className="flex flex-col md:flex-row gap-4 justify-center">
+                  <button 
+                    onClick={() => setCurrentStep('home')}
+                    className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105"
+                  >
+                    🏠 Choisir mon package payant
+                  </button>
+                  <button 
+                    onClick={() => setCurrentStep('home')}
+                    className="bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105"
+                  >
+                    ↺ Nouvelle démo
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <button 
+                onClick={() => setCurrentStep('home')}
+                className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105"
+              >
+                🏠 Retour à l'accueil
+              </button>
+            )}
           </div>
         </div>
 
