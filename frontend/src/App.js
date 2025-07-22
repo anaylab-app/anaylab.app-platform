@@ -115,6 +115,29 @@ function App() {
     setIsLoading(true);
 
     try {
+      // Mode TEST gratuit - génération directe sans paiement
+      if (selectedPackage === 'test') {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/demo/generate`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            package_id: 'test',
+            user_form: formData
+          })
+        });
+
+        const data = await response.json();
+        
+        if (data.modules) {
+          setUserModules(data.modules);
+          setCurrentStep('modules');
+        } else {
+          throw new Error('Erreur génération modules de démonstration');
+        }
+        return;
+      }
+
+      // Mode payant - Stripe checkout classique
       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/checkout/session`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -133,7 +156,7 @@ function App() {
         throw new Error('URL de paiement non reçue');
       }
     } catch (error) {
-      alert('Erreur création session paiement: ' + error.message);
+      alert('Erreur: ' + error.message);
     } finally {
       setIsLoading(false);
     }
