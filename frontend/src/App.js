@@ -550,7 +550,8 @@ function App() {
                   handlePackageSelect(id);
                   setCurrentStep('form');
                 }}
-                className={`px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 ${
+                className={`px-6 py-3 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 ${
+                  id === 'test' ? 'bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700' :
                   id === 'starter' ? 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700' :
                   id === 'premium' ? 'bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-700 hover:to-orange-700' :
                   'bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700'
