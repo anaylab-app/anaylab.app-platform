@@ -182,14 +182,30 @@ function App() {
   };
 
   if (currentStep === 'modules') {
+    const isDemo = userModules.length > 0 && userModules[0].id === 'demo_info';
+    
     return (
       <div className="min-h-screen bg-black text-white">
         <div className="container mx-auto px-4 py-8">
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">
-              🎉 Tes Modules Anaylab Builder™
-            </h1>
-            <p className="text-xl opacity-80">Clique sur chaque module pour découvrir ton contenu personnalisé</p>
+            {isDemo ? (
+              <>
+                <h1 className="text-4xl md:text-6xl font-bold mb-4">
+                  🎯 Tes Modules de Démonstration
+                </h1>
+                <div className="bg-gradient-to-r from-green-600 to-teal-600 text-white px-6 py-3 rounded-lg inline-block mb-4">
+                  <span className="font-bold">MODE TEST GRATUIT ACTIVÉ</span>
+                </div>
+                <p className="text-xl opacity-80">Découvre un aperçu de ce que tu recevrais avec nos offres payantes</p>
+              </>
+            ) : (
+              <>
+                <h1 className="text-4xl md:text-6xl font-bold mb-4">
+                  🎉 Tes Modules Anaylab Builder™
+                </h1>
+                <p className="text-xl opacity-80">Clique sur chaque module pour découvrir ton contenu personnalisé</p>
+              </>
+            )}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
