@@ -210,8 +210,149 @@ class AnaylabAPITester:
             self.log_test("Invalid Package Validation", False, str(e))
             return False
 
+    def test_demo_generate_endpoint(self):
+        """Test the new /api/demo/generate endpoint"""
+        test_form = {
+            "prenom": "TestDemo",
+            "email": "demo@example.com",
+            "competences": "Marketing digital",
+            "passion": "Business",
+            "temps_semaine": "5-10 heures",
+            "revenu_vise": "1000-3000€",
+            "niveau_experience": "Débutant",
+            "version_choisie": "TEST GRATUIT"
+        }
+        
+        payload = {
+            "package_id": "test",
+            "user_form": test_form
+        }
+        
+        try:
+            response = requests.post(
+                f"{self.base_url}/api/demo/generate",
+                json=payload,
+                headers={'Content-Type': 'application/json'},
+                timeout=15
+            )
+            
+            success = response.status_code == 200
+            details = f"Status: {response.status_code}"
+            
+            if success:
+                data = response.json()
+                modules_count = len(data.get('modules', []))
+                package_type = data.get('package', '')
+                has_demo_module = False
+                
+                if data.get('modules'):
+                    first_module = data['modules'][0]
+                    has_demo_module = (
+                        first_module.get('id') == 'demo_info' and 
+                        '🎯 Informations Démonstration' in first_module.get('title', '')
+                    )
+                
+                details += f", Modules: {modules_count}, Package: {package_type}, Demo module: {has_demo_module}"
+                success = success and modules_count > 0 and package_type == 'demo' and has_demo_module
+            else:
+                try:
+                    error_data = response.json()
+                    details += f", Error: {error_data}"
+                except:
+                    details += f", Response: {response.text[:200]}"
+            
+            self.log_test("Demo Generate Endpoint", success, details)
+            return success
+            
+        except Exception as e:
+            self.log_test("Demo Generate Endpoint", False, str(e))
+            return False
+
+    def test_demo_generate_invalid_package(self):
+        """Test demo endpoint with invalid package (should fail)"""
+        test_form = {
+            "prenom": "TestDemo",
+            "email": "demo@example.com",
+            "competences": "Marketing",
+            "passion": "Business",
+            "temps_semaine": "5-10 heures",
+            "revenu_vise": "1000-3000€",
+            "niveau_experience": "Débutant",
+            "version_choisie": "Starter"
+        }
+        
+        payload = {
+            "package_id": "starter",  # Should only accept "test"
+            "user_form": test_form
+        }
+        
+        try:
+            response = requests.post(
+                f"{self.base_url}/api/demo/generate",
+                json=payload,
+                headers={'Content-Type': 'application/json'},
+                timeout=10
+            )
+            
+            success = response.status_code == 400
+            details = f"Status: {response.status_code}"
+            
+            if success:
+                details += ", Correctly rejected non-test package"
+            else:
+                details += ", Should have returned 400 for non-test package"
+            
+            self.log_test("Demo Generate Invalid Package", success, details)
+            return success
+            
+        except Exception as e:
+            self.log_test("Demo Generate Invalid Package", False, str(e))
+            return False
+
+    def test_checkout_session_test_package(self):
+        """Test that checkout session rejects test package"""
+        test_form = {
+            "prenom": "TestUser",
+            "email": "test@example.com",
+            "competences": "Marketing",
+            "passion": "Business",
+            "temps_semaine": "5-10 heures",
+            "revenu_vise": "1000-3000€",
+            "niveau_experience": "Débutant",
+            "version_choisie": "TEST GRATUIT"
+        }
+        
+        payload = {
+            "package_id": "test",
+            "origin_url": self.base_url,
+            "user_form": test_form
+        }
+        
+        try:
+            response = requests.post(
+                f"{self.base_url}/api/checkout/session",
+                json=payload,
+                headers={'Content-Type': 'application/json'},
+                timeout=10
+            )
+            
+            success = response.status_code == 400
+            details = f"Status: {response.status_code}"
+            
+            if success:
+                details += ", Correctly rejected test package"
+            else:
+                details += ", Should have returned 400 for test package"
+            
+            self.log_test("Checkout Session Test Package Rejection", success, details)
+            return success
+            
+        except Exception as e:
+            self.log_test("Checkout Session Test Package Rejection", False, str(e))
+            return False
+
     def test_all_packages(self):
-        """Test all three packages"""
+        """Test all four packages (including new test package)"""
         packages = ["starter", "premium", "dsa_express"]
         all_passed = True
         
