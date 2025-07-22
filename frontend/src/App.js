@@ -529,7 +529,7 @@ function App() {
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 max-w-7xl mx-auto mb-16">
           {Object.entries(packages).map(([id, pkg]) => (
             <div 
               key={id}
@@ -540,46 +540,55 @@ function App() {
               className={`relative cursor-pointer transform hover:scale-105 transition-all duration-300 ${
                 id === 'premium' ? 'lg:-mt-4' : ''
               } ${
-                id === 'test' ? 'border-2 border-green-400' : ''
+                (id === 'test' || id === 'test_full') ? 'border-2 border-green-400' : ''
               }`}
             >
+              {id === 'test_full' && (
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-blue-400 to-purple-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+                  🧪 TEST COMPLET
+                </div>
+              )}
               {id === 'test' && (
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-green-400 to-teal-500 text-black px-4 py-2 rounded-full text-sm font-bold">
-                  🎯 ESSAI GRATUIT
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-green-400 to-teal-500 text-black px-3 py-1 rounded-full text-xs font-bold">
+                  🎯 DEMO RAPIDE
                 </div>
               )}
               {id === 'premium' && (
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-4 py-2 rounded-full text-sm font-bold">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-3 py-1 rounded-full text-xs font-bold">
                   ⭐ POPULAIRE
                 </div>
               )}
               <div className={`bg-white bg-opacity-10 backdrop-blur-lg border ${
+                id === 'test_full' ? 'border-blue-400' :
                 id === 'test' ? 'border-green-400' :
                 id === 'premium' ? 'border-yellow-400' : 'border-white border-opacity-30'
-              } rounded-lg p-6 h-full hover:bg-opacity-20 ${
+              } rounded-lg p-4 h-full hover:bg-opacity-20 ${
+                id === 'test_full' ? 'bg-gradient-to-br from-blue-900/20 to-purple-900/20' :
                 id === 'test' ? 'bg-gradient-to-br from-green-900/20 to-teal-900/20' : ''
               }`}>
-                <div className="text-center mb-6">
-                  <h3 className="text-xl font-bold mb-2">{pkg.name}</h3>
-                  <div className={`text-3xl font-bold mb-2 ${
-                    id === 'test' ? 'text-green-400' : ''
+                <div className="text-center mb-4">
+                  <h3 className="text-lg font-bold mb-2">{pkg.name}</h3>
+                  <div className={`text-2xl font-bold mb-2 ${
+                    (id === 'test' || id === 'test_full') ? 'text-green-400' : ''
                   }`}>{pkg.price}</div>
-                  <p className="text-sm opacity-80">{pkg.modules} modules</p>
+                  <p className="text-xs opacity-80">{pkg.modules} modules</p>
                 </div>
-                <ul className="space-y-2 mb-8 text-sm">
-                  {pkg.features.map((feature, idx) => (
+                <ul className="space-y-1 mb-6 text-xs">
+                  {pkg.features.slice(0, 6).map((feature, idx) => (
                     <li key={idx} className="flex items-start">
-                      <span className={`mr-2 ${id === 'test' ? 'text-green-400' : 'text-green-400'}`}>✅</span>
-                      <span>{feature}</span>
+                      <span className={`mr-1 ${(id === 'test' || id === 'test_full') ? 'text-green-400' : 'text-green-400'}`}>✅</span>
+                      <span className="text-xs">{feature}</span>
                     </li>
                   ))}
                 </ul>
-                <button className={`w-full py-3 px-4 rounded-lg font-semibold transition-all duration-300 text-sm ${
-                  id === 'test' 
+                <button className={`w-full py-2 px-3 rounded-lg font-semibold transition-all duration-300 text-xs ${
+                  id === 'test_full' 
+                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700'
+                    : id === 'test' 
                     ? 'bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700'
                     : 'bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700'
                 } text-white`}>
-                  {id === 'test' ? 'Tester Gratuitement' : 'Commencer'}
+                  {(id === 'test' || id === 'test_full') ? 'Tester Gratuitement' : 'Commencer'}
                 </button>
               </div>
             </div>
