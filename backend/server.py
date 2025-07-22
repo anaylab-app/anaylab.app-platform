@@ -192,6 +192,35 @@ def generate_dsa_express_modules(user_form: UserForm) -> List[Dict]:
 async def root():
     return {"message": "Anaylab Builder API"}
 
+class DemoRequest(BaseModel):
+    package_id: str
+    user_form: UserForm
+
+@app.post("/api/demo/generate")
+async def generate_demo_modules(request: DemoRequest):
+    """Génère des modules de démonstration gratuits pour test"""
+    try:
+        if request.package_id != "test":
+            raise HTTPException(status_code=400, detail="Mode demo uniquement pour package test")
+        
+        # Générer les modules starter pour la démo
+        modules = generate_starter_modules(request.user_form)
+        
+        # Ajouter un module spécial démo
+        demo_module = {
+            "id": "demo_info",
+            "title": "🎯 Informations Démonstration",
+            "content": f"**Félicitations {request.user_form.prenom} !**\n\nTu viens de tester Anaylab Builder™ gratuitement.\n\n**Ce que tu as reçu:**\n- 6 modules personnalisés basés sur tes réponses\n- Contenu adapté à tes compétences en {request.user_form.competences}\n- Stratégie pour ta passion : {request.user_form.passion}\n\n**Pour débloquer la version complète:**\n- Starter (20€) : 6 modules complets\n- Premium (49€) : 11 modules + outils avancés\n- DSA Express (99€) : 19 modules + accompagnement\n\n**Prêt à passer à l'action ?**\nReviens à l'accueil et choisis ton package payant pour recevoir du contenu encore plus détaillé et actionnable !\n\n💡 Cette démo montre 70% du potentiel réel de nos modules premium."
+        }
+        
+        # Insérer le module demo en premier
+        modules.insert(0, demo_module)
+        
+        return {"modules": modules, "package": "demo", "user": request.user_form.dict()}
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Erreur génération démo: {str(e)}")
+
 @app.post("/api/checkout/session")
 async def create_checkout_session(request: CheckoutRequest):
     # Validate package
