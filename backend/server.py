@@ -223,6 +223,10 @@ async def generate_demo_modules(request: DemoRequest):
 
 @app.post("/api/checkout/session")
 async def create_checkout_session(request: CheckoutRequest):
+    # Validation pour package test (ne doit pas arriver normalement)
+    if request.package_id == "test":
+        raise HTTPException(status_code=400, detail="Package test doit utiliser l'endpoint /api/demo/generate")
+    
     # Validate package
     if request.package_id not in PACKAGES:
         raise HTTPException(status_code=400, detail="Package invalide")
