@@ -446,7 +446,7 @@ function App() {
                 className={`w-full py-4 px-6 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 ${
                   isLoading 
                     ? 'bg-gray-600 cursor-not-allowed' 
-                    : selectedPackage === 'test'
+                    : (selectedPackage === 'test' || selectedPackage === 'test_full')
                     ? 'bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700'
                     : 'bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700'
                 }`}
