@@ -16,6 +16,7 @@ class AnaylabAPITester:
         self.tests_run = 0
         self.tests_passed = 0
         self.session_id = None
+        self.dsa_session_id = None
 
     def log_test(self, name, success, details=""):
         """Log test results"""
