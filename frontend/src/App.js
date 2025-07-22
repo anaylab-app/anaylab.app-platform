@@ -232,7 +232,8 @@ function App() {
               <div 
                 key={module.id} 
                 className={`module-card group cursor-pointer transform hover:scale-105 transition-all duration-300 ${
-                  module.id === 'demo_info' ? 'border-2 border-green-400 bg-gradient-to-br from-green-600/20 to-teal-600/20' : ''
+                  module.id === 'demo_info' ? 'border-2 border-green-400 bg-gradient-to-br from-green-600/20 to-teal-600/20' : 
+                  module.id === 'test_full_info' ? 'border-2 border-blue-400 bg-gradient-to-br from-blue-600/20 to-purple-600/20' : ''
                 }`}
                 onClick={() => {
                   const modal = document.getElementById('moduleModal');
