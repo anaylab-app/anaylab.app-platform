@@ -453,8 +453,8 @@ function App() {
               >
                 {isLoading 
                   ? '⏳ Création en cours...' 
-                  : selectedPackage === 'test'
-                  ? '🎯 Générer ma démo gratuite'
+                  : (selectedPackage === 'test' || selectedPackage === 'test_full')
+                  ? '🎯 Générer mon test gratuit'
                   : '💳 Payer et recevoir mes modules'
                 }
               </button>
