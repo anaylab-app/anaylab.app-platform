@@ -189,60 +189,12 @@ function App() {
           </div>
 
           <div className="text-center mt-12">
-            {isTestFull ? (
-              <div className="space-y-4">
-                <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg inline-block">
-                  <span className="font-bold">🧪 Test complet réussi ! Tu as vu la puissance de DSA Express</span>
-                </div>
-                <div className="flex flex-col md:flex-row gap-4 justify-center">
-                  <button 
-                    onClick={() => setCurrentStep('home')}
-                    className="bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-700 hover:to-orange-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105"
-                  >
-                    💳 Passer à la version payante
-                  </button>
-                  <button 
-                    onClick={() => {
-                      setUserModules([]);
-                      setCurrentStep('home');
-                    }}
-                    className="bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105"
-                  >
-                    🏠 Nouveau test
-                  </button>
-                </div>
-              </div>
-            ) : isDemo ? (
-              <div className="space-y-4">
-                <div className="bg-gradient-to-r from-yellow-600 to-orange-600 text-white px-6 py-3 rounded-lg inline-block">
-                  <span className="font-bold">🚀 Prêt pour plus ? Teste la version complète !</span>
-                </div>
-                <div className="flex flex-col md:flex-row gap-4 justify-center">
-                  <button 
-                    onClick={() => {
-                      handlePackageSelect('test_full');
-                      setCurrentStep('form');
-                    }}
-                    className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105"
-                  >
-                    🧪 Test complet (19 modules)
-                  </button>
-                  <button 
-                    onClick={() => setCurrentStep('home')}
-                    className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105"
-                  >
-                    💳 Choisir mon package payant
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <button 
-                onClick={() => setCurrentStep('home')}
-                className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105"
-              >
-                🏠 Retour à l'accueil
-              </button>
-            )}
+            <button 
+              onClick={() => setCurrentStep('home')}
+              className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105"
+            >
+              🏠 Retour à l'accueil
+            </button>
           </div>
         </div>
 
