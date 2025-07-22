@@ -122,12 +122,14 @@ function App() {
 
     try {
       // Mode TEST gratuit - génération directe sans paiement
-      if (selectedPackage === 'test') {
-        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/demo/generate`, {
+      if (selectedPackage === 'test' || selectedPackage === 'test_full') {
+        const endpoint = selectedPackage === 'test_full' ? '/api/test/generate-full' : '/api/demo/generate';
+        
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}${endpoint}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            package_id: 'test',
+            package_id: selectedPackage,
             user_form: formData
           })
         });
@@ -138,7 +140,7 @@ function App() {
           setUserModules(data.modules);
           setCurrentStep('modules');
         } else {
-          throw new Error('Erreur génération modules de démonstration');
+          throw new Error('Erreur génération modules de test');
         }
         return;
       }
