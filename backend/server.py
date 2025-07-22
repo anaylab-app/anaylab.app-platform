@@ -32,8 +32,6 @@ STRIPE_API_KEY = "sk_live_51RjOHMD0lKcqVSs9R27rbtAHKUv01DX9hBV2ZR4NxgviopRQhdRnZ
 
 # Fixed pricing packages (security: never accept amounts from frontend)
 PACKAGES = {
-    "test_full": {"name": "Test Complet", "amount": 0.0, "currency": "eur", "modules": 19},
-    "test": {"name": "Demo Rapide", "amount": 0.0, "currency": "eur", "modules": 6},
     "starter": {"name": "Starter", "amount": 20.0, "currency": "eur", "modules": 6},
     "premium": {"name": "Premium", "amount": 49.0, "currency": "eur", "modules": 11},
     "dsa_express": {"name": "DSA Express", "amount": 99.0, "currency": "eur", "modules": 19}
