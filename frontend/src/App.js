@@ -465,7 +465,14 @@ function App() {
 
         {/* Testimonials */}
         <div className="max-w-4xl mx-auto mb-16">
-          <h2 className="text-3xl font-bold text-center mb-12">⭐ Témoignages Clients</h2>
+          <h2 className="text-3xl font-bold text-center mb-8">⭐ Témoignages & Avis Clients</h2>
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center bg-white bg-opacity-20 backdrop-blur-lg rounded-lg px-6 py-3 border border-white border-opacity-30">
+              <span className="text-2xl mr-2">⭐⭐⭐⭐</span>
+              <span className="text-xl font-bold">4/5</span>
+              <span className="text-lg ml-2 opacity-80">Note moyenne</span>
+            </div>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {testimonials.map((testimonial, idx) => (
               <div key={idx} className="bg-white bg-opacity-10 backdrop-blur-lg rounded-lg p-6 border border-white border-opacity-30">
