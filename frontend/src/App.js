@@ -18,11 +18,17 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
 
   const packages = {
+    test_full: {
+      name: 'TEST COMPLET',
+      price: '0 €',
+      modules: 19,
+      features: ['🎯 Test de tous les modules', 'Expérience complète DSA Express', 'Génération personnalisée', 'Interface réelle', 'Aucun paiement requis', 'Test du flow complet', 'Validation avant investissement']
+    },
     test: {
-      name: 'TEST GRATUIT',
+      name: 'DEMO RAPIDE',
       price: '0 €',
       modules: 6,
-      features: ['🎯 Mode démonstration', 'Idée de business', 'Nom de marque', 'Offre claire', 'Mini tunnel', 'Plan d\'action', 'Pitch prêt']
+      features: ['🎯 Aperçu rapide', 'Idée de business', 'Nom de marque', 'Offre claire', 'Mini tunnel', 'Plan d\'action', 'Pitch prêt']
     },
     starter: {
       name: 'Starter',
