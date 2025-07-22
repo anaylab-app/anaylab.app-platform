@@ -492,6 +492,11 @@ class AnaylabAPITester:
         self.test_demo_generate_invalid_package()
         self.test_checkout_session_test_package()
         
+        # Test DSA Express specifically (as requested)
+        print("💎 Testing DSA Express Package (99€ - 19 modules)...")
+        self.test_dsa_express_specific()
+        self.test_dsa_express_pricing()
+        
         # Test main checkout flow
         print("💳 Testing Checkout Flow...")
         self.test_checkout_session_creation()
