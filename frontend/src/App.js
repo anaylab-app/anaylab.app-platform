@@ -511,6 +511,40 @@ function App() {
             ))}
           </div>
         </div>
+
+        {/* Contact Section */}
+        <div className="max-w-4xl mx-auto mb-16">
+          <div className="bg-white bg-opacity-10 backdrop-blur-lg border border-white border-opacity-30 rounded-lg p-8">
+            <h2 className="text-3xl font-bold text-center mb-8">📞 Contact</h2>
+            <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-12">
+              <a 
+                href="mailto:anaylabbuilder@gmail.com"
+                className="flex items-center gap-3 text-white hover:text-yellow-300 transition-colors text-lg font-semibold"
+              >
+                <span className="text-2xl">📧</span>
+                <span>anaylabbuilder@gmail.com</span>
+              </a>
+              <a 
+                href="https://www.tiktok.com/@anaylab_builder"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 text-white hover:text-yellow-300 transition-colors text-lg font-semibold"
+              >
+                <span className="text-2xl">📱</span>
+                <span>@anaylab_builder</span>
+              </a>
+              <a 
+                href="https://www.instagram.com/anaylab_builder"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 text-white hover:text-yellow-300 transition-colors text-lg font-semibold"
+              >
+                <span className="text-2xl">📸</span>
+                <span>@anaylab_builder</span>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
