@@ -18,6 +18,12 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
 
   const packages = {
+    test: {
+      name: 'TEST GRATUIT',
+      price: '0 €',
+      modules: 6,
+      features: ['🎯 Mode démonstration', 'Idée de business', 'Nom de marque', 'Offre claire', 'Mini tunnel', 'Plan d\'action', 'Pitch prêt']
+    },
     starter: {
       name: 'Starter',
       price: '20 €',
