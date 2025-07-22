@@ -197,6 +197,31 @@ class DemoRequest(BaseModel):
     package_id: str
     user_form: UserForm
 
+@app.post("/api/test/generate-full")
+async def generate_full_test_modules(request: DemoRequest):
+    """Génère les 19 modules complets pour test gratuit (équivalent DSA Express)"""
+    try:
+        if request.package_id != "test_full":
+            raise HTTPException(status_code=400, detail="Endpoint test complet uniquement pour package test_full")
+        
+        # Générer les modules DSA Express complets
+        modules = generate_dsa_express_modules(request.user_form)
+        
+        # Ajouter un module spécial test complet en premier
+        test_full_module = {
+            "id": "test_full_info",
+            "title": "🧪 Test Complet - Informations",
+            "content": f"**Félicitations {request.user_form.prenom} !**\n\nTu viens de tester l'INTÉGRALITÉ de notre offre DSA Express gratuitement !\n\n**Ce que tu as reçu (IDENTIQUE à DSA Express 99€):**\n- 19 modules personnalisés ultra-détaillés\n- Contenu adapté à ton niveau {request.user_form.niveau_experience}\n- Stratégie pour {request.user_form.competences} × {request.user_form.passion}\n- Plan d'action pour {request.user_form.temps_semaine}\n- Objectif {request.user_form.revenu_vise} intégré\n\n**La différence ? AUCUNE !**\nTu as reçu exactement le même contenu que nos clients payants.\n\n**Pourquoi on fait ça ?**\nParce qu'on est sûrs de la valeur qu'on apporte. Tu peux maintenant acheter en toute confiance.\n\n**Les vrais clients DSA Express reçoivent :**\n- ✅ Ce même contenu de qualité\n- ✅ Support client prioritaire\n- ✅ Mises à jour à vie\n- ✅ Accès communauté VIP\n\n💡 **Tu as testé, tu as vu la qualité. Maintenant c'est à toi de décider !**"
+        }
+        
+        # Insérer le module test complet en premier
+        modules.insert(0, test_full_module)
+        
+        return {"modules": modules, "package": "test_full", "user": request.user_form.dict()}
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Erreur génération test complet: {str(e)}")
+
 @app.post("/api/demo/generate")
 async def generate_demo_modules(request: DemoRequest):
     """Génère des modules de démonstration gratuits pour test"""
