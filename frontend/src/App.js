@@ -247,6 +247,8 @@ function App() {
                 <div className={`relative h-48 rounded-lg overflow-hidden p-6 flex items-center justify-center ${
                   module.id === 'demo_info' 
                     ? 'bg-gradient-to-br from-green-600 to-teal-600' 
+                    : module.id === 'test_full_info'
+                    ? 'bg-gradient-to-br from-blue-600 to-purple-600'
                     : 'bg-gradient-to-br from-purple-600 to-blue-600'
                 }`}>
                   <h3 className="text-2xl font-bold text-white text-center group-hover:text-yellow-300 transition-colors">
