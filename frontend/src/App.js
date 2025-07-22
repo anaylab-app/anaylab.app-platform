@@ -212,7 +212,9 @@ function App() {
             {userModules.map((module, index) => (
               <div 
                 key={module.id} 
-                className="module-card group cursor-pointer transform hover:scale-105 transition-all duration-300"
+                className={`module-card group cursor-pointer transform hover:scale-105 transition-all duration-300 ${
+                  module.id === 'demo_info' ? 'border-2 border-green-400 bg-gradient-to-br from-green-600/20 to-teal-600/20' : ''
+                }`}
                 onClick={() => {
                   const modal = document.getElementById('moduleModal');
                   const title = document.getElementById('modalTitle');
@@ -222,7 +224,11 @@ function App() {
                   modal.classList.remove('hidden');
                 }}
               >
-                <div className="relative h-48 rounded-lg overflow-hidden bg-gradient-to-br from-purple-600 to-blue-600 p-6 flex items-center justify-center">
+                <div className={`relative h-48 rounded-lg overflow-hidden p-6 flex items-center justify-center ${
+                  module.id === 'demo_info' 
+                    ? 'bg-gradient-to-br from-green-600 to-teal-600' 
+                    : 'bg-gradient-to-br from-purple-600 to-blue-600'
+                }`}>
                   <h3 className="text-2xl font-bold text-white text-center group-hover:text-yellow-300 transition-colors">
                     {module.title}
                   </h3>
