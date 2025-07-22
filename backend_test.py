@@ -411,6 +411,12 @@ class AnaylabAPITester:
         print("📡 Testing Basic Connectivity...")
         self.test_root_endpoint()
         
+        # Test new demo functionality
+        print("🎯 Testing New Demo Functionality...")
+        self.test_demo_generate_endpoint()
+        self.test_demo_generate_invalid_package()
+        self.test_checkout_session_test_package()
+        
         # Test main checkout flow
         print("💳 Testing Checkout Flow...")
         self.test_checkout_session_creation()
